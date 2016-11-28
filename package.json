@@ -1,0 +1,17 @@
+{
+  "name": "converter",
+  "version": "1.0.0",
+  "description": "Convert Integers to Roman numerals and Roman numerals to Integers",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ialec39/roman-numeral-converter.git"
+  },
+  "author": "Alice Montgomery",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^2.5.2"
+  }
+}
