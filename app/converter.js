@@ -79,8 +79,9 @@ function numeralConverter(formData) {
   var numeral = convertNumeral(formData.numeral.value);
   if(numeral == undefined) {
       document.getElementsByClassName('error')[0].style.display = 'block';
-      document.getElementsByClassName('error')[0].innerHTML = '<h2>Please input a valid Roman Numeral</h2>';
+      document.getElementsByClassName('error')[0].innerHTML = '<h4>Please input a valid Roman Numeral</h4>';
   } else {
+    document.getElementsByClassName('error')[0].style.display = 'none';
     document.getElementsByClassName('success')[0].style.display = 'block';
     document.getElementsByClassName('success')[0].innerHTML = '<h3>Number: ' + numeral + '</h3>';
   }
@@ -88,6 +89,7 @@ function numeralConverter(formData) {
 
 function numberConverter(formData) {
   event.preventDefault();
+  document.getElementsByClassName('error')[0].style.display = 'none';
   document.getElementsByClassName('success')[0].style.display = 'block';
   document.getElementsByClassName('success')[0].innerHTML = '<h3>Numeral: ' + convertNumber(formData.number.value) + '</h3>';
 }
