@@ -30,22 +30,38 @@ var repository = [{
 }, {
   numeral: 'IX',
   number: 9
-},{
+}, {
   numeral: 'V',
   number: 5
 }, {
   numeral: 'IV',
   number: 4
-},{
+}, {
   numeral: 'I',
   number: 1
 }];
 
+var validateNumeral = numeral => {
+  var count = 0,
+    valid = true;
+  var s = numeral.match(/([a-zA-Z])\1*/g) || [];
+  s.map((num) => {
+    count = num.length;
+    if (count > 3) {
+      valid = false;
+    }
+  });
+  return valid;
+};
+
 var convertNumeral = numeral => {
   var numeral = numeral.toUpperCase(),
     length = numeral.length,
-    number = 0;
-    var count = 0;
+    number = 0,
+    count = 0;
+  if (!validateNumeral(numeral)) {
+    return undefined;
+  }
   while (length > 0) {
     count++;
     repository.map((data) => {
@@ -55,7 +71,7 @@ var convertNumeral = numeral => {
         length = length - data.numeral.length;
       }
     });
-    if(count == 12) {
+    if (count == 12) {
       return undefined;
       break;
     }
@@ -77,9 +93,10 @@ var convertNumber = number => {
 function numeralConverter(formData) {
   event.preventDefault();
   var numeral = convertNumeral(formData.numeral.value);
-  if(numeral == undefined) {
-      document.getElementsByClassName('error')[0].style.display = 'block';
-      document.getElementsByClassName('error')[0].innerHTML = '<h4>Please input a valid Roman Numeral</h4>';
+  if (numeral == undefined) {
+    document.getElementsByClassName('success')[0].style.display = 'none';
+    document.getElementsByClassName('error')[0].style.display = 'block';
+    document.getElementsByClassName('error')[0].innerHTML = '<h4>Please input a valid Roman Numeral</h4>';
   } else {
     document.getElementsByClassName('error')[0].style.display = 'none';
     document.getElementsByClassName('success')[0].style.display = 'block';
@@ -95,5 +112,8 @@ function numberConverter(formData) {
 }
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-  module.exports = {convertNumeral, convertNumber};
+  module.exports = {
+    convertNumeral,
+    convertNumber
+  };
 };

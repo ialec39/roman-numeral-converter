@@ -93,9 +93,12 @@ describe('Roman Numeral Converter', () => {
     });
   });
 
-  describe('invalid nueral', () => {
-    it('should return 0 when given W', () => {
+  describe('invalid numeral', () => {
+    it('should return undefined when given W', () => {
       expect(converter.convertNumeral('W')).toEqual(undefined);
+    });
+    it('should return undefined when given IIII', () => {
+      expect(converter.convertNumeral('IIII')).toEqual(undefined);
     });
   });
 });
